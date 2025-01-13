@@ -1,11 +1,5 @@
 #Pedro Souza, Financial Calculator
 
-#Would you like to:
-#1. Calulate length of saving for goal
-#2. Calculate compund interest
-#3. Get budget allocation help
-#4. Calculatdiscount and tax slae price
-#5. Calculate tip
 
 def calc_tip():
     ogPrice = input("What was the original price?")
@@ -18,7 +12,7 @@ def calc_price():
 
 def budget():
     input("How much money do you have this month?")
-    print("30 percent rent 10 percent food, ten percent fun, 20 percent savings, and the leftover 30 percent should go to medical bills, debt, religious offerings, charity, or any other thing")
+    print(f"")
 
 def calc_compound():
     pass
@@ -40,22 +34,26 @@ def calc_goal():
     totalTime = (goal // deposit) + 1
     return totalTime
 
-def main():
-    choice = input("\nWould you like to\n1. Calulate length of saving for goal\n2. Calculate compund interest\n3. Get budget allocation help\n4. Calculate discount and tax slae price\n5. Calculate tip\n")
-
+def main(choice):
+    
     if choice == "1":
+
         print(f"It will take you {calc_goal()} months to complete your assignment.")
 
-    if choice == "2":
+    elif choice == "2":
         calc_compound()
 
-    if choice == "3":
+    elif choice == "3":
         budget()
     
-    if choice == "4":
+    elif choice == "4":
         calc_price()
 
-    if choice == "5":
+    elif choice == "5":
         calc_tip()
 
-main()
+    else:
+        main(input("ERROR\n\nWould you like to\n1. Calulate length of saving for goal\n2. Calculate compund interest\n3. Get budget allocation help\n4. Calculate discount and tax slae price\n5. Calculate tip\nPlease only answer with integers 1-5\n"))
+
+main(input("\nWould you like to\n1. Calulate length of saving for goal\n2. Calculate compund interest\n3. Get budget allocation help\n4. Calculate discount and tax slae price\n5. Calculate tip\n")
+)
