@@ -29,11 +29,11 @@ def search(searched):
     if searched in playlist:
         print(f"\nThe song {searched} was found in your playlist\n")
     else:
-        print(f"\nYou do not have the song {searched} in your playlist yet")
+        print(f"\nYou do not have the song {searched} in your playlist yet\n")
 
 #Randomize function, this function simply uses random.choice to pick a random song for the user
 def randomize():
-    print(f"\nYour random song is: {random.choice(playlist)}\n")
+    print(f"\nYour random song is: {random.choice(list(playlist))}\n") #random.choice(list(playlist)) this uses a listified version of the playlist for randomizing purposes
     
 #Main fucntion, this function manages the UI by printing player the action options and running a different fucntions basedf on user's choice (userChoice var)
 def main():
@@ -49,7 +49,8 @@ def main():
     elif userChoice == "4":
         randomize()
     elif userChoice == "5":
-        exit()
+        print("")
+        exit("\nBye-bye!\n")
     #Idiot proofing, if the input isnt the strings "1- "5", error message plays
     else:
         print("\nYour input is invalid, please only type numbers 1-5 as inputs\n")
