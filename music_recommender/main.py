@@ -1,9 +1,9 @@
-#Import csv so we can read the movies list later on
+#Import csv so we can acess the list later on
 import csv
 
 #This function uses the variables it is given to print specific movies that match them
 def print_filtered(title, director, genre, rating, length, actor):
-    with open("music_recommender\movies_list.csv") as file:
+    with open("music_recommender/movies_list.csv") as file:
         reader = csv.reader(file)
         next(reader)
         for currentMovie in reader: #Just loops through every movie to check if it fits the selected criteria
@@ -14,7 +14,7 @@ def print_filtered(title, director, genre, rating, length, actor):
 
 #Function that prints all of the movies in the list
 def print_all():
-    with open("music_recommender\movies_list.csv") as file:
+    with open("music_recommender/movies_list.csv") as file:
         reader = csv.reader(file)
         next(reader)
         for currentMovie in reader:
