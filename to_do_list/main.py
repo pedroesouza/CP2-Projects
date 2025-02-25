@@ -19,17 +19,21 @@ def check(lineChecked):
             if currentLine != lineChecked:
                 file.write(line)
             else:
-                lineString = line.split(": ")
-                if lineString[1].strip() == "False":
-                    file.write(f"{lineString[0]}: True\n")
+                lineString = line.split(". ", 1)
+                taskPart = lineString[1].split(": ")
+                if taskPart[1].strip() == "False":
+                    file.write(f"{currentLine}. {taskPart[0]}: True\n")
                 else:
-                    file.write(f"{lineString[0]}: False\n") 
+                    file.write(f"{currentLine}. {taskPart[0]}: False\n") 
         file.truncate()
 
-#Add function simply appends a new line as written by the user, defaults to false
+#Add function simply appends a new line as written by the user, defaults to false, also every line is numbered
 def add(added):
-    with open("to_do_list/list.txt", "a") as file:
-        file.write(f"{added}: False\n")
+    with open("to_do_list/list.txt", "a+") as file:
+        file.seek(0)
+        lines = file.readlines()
+        nextTaskNumber = len(lines) + 1
+        file.write(f"{nextTaskNumber}. {added}: False\n")
 
 #The remove function rewrties every line but the one that was selected to be deleted
 def remove(lineDeleted):
@@ -46,12 +50,17 @@ def remove(lineDeleted):
     with open("to_do_list/list.txt", "r+") as file:
         lines = file.readlines()
         file.seek(0)
+        newLines = []
         for line in lines:
             currentLine += 1
             if currentLine != lineDeleted:
-                file.write(line)
+                newLines.append(line)
+        file.seek(0)
+        for i, line in enumerate(newLines):
+            lineString = line.split(". ", 1)
+            taskPart = lineString[1].split(": ")
+            file.write(f"{i + 1}. {taskPart[0]}: {taskPart[1].strip()}\n")
         file.truncate()
-
 
 #Main UI function that calls other functions
 def main():
@@ -71,7 +80,7 @@ def main():
     elif choice == "3":
         check(input("What row would you like to check off? (counting starts at 1 on the first task) "))
     elif choice == "4":
-        exit() #terminates the code
+        exit()
 
 #Runs main function until the code is terminatied
 while True:
