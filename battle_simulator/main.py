@@ -52,8 +52,10 @@ def battle_main():
                     funcCharTwoDict = {k.strip().lower(): v.strip() for k, v in i.items()}
             return funcCharOneDict, funcCharTwoDict
 
-    def damage_calculator():
-        return random.randint(5, 15)
+    def damage_calculator(attacker, defender, base_damage):
+        attack = int(attacker.get("strength", 0))
+        defense = int(defender.get("defense", 1))
+        return max(1, base_damage + (attack - defense) // 2)
 
     charOneDict, charTwoDict = chose_characters(
         input("What is the name of player 1's character? ").strip().upper(),
@@ -76,18 +78,93 @@ def battle_main():
             moveTwo = input("Would you like to heavy attack (1), quick attack (2), or defend (3)? ")
 
             if moveOne == "1":
-                charTwoDict["health"] = str(int(charTwoDict["health"]) - damage_calculator())
-                print_player_move("one", "two", "heavy attack", charTwoDict["health"])
-            elif moveOne == "2":
-                charTwoDict["health"] = str(int(charTwoDict["health"]) - damage_calculator() // 2)
-                print_player_move("one", "two", "quick attack", charTwoDict["health"])
+            
+                if moveTwo == "1":
+                    
+                    if charOneDict["speed"] > charTwoDict["speed"]:
+                        charTwoDict["health"] = str(int(charTwoDict["health"]) - damage_calculator(charOneDict, charTwoDict, 50))
+                        print_player_move("one", "two", "heavy attack", charTwoDict["health"])
+                        charOneDict["health"] = str(int(charOneDict["health"]) - damage_calculator(charTwoDict, charOneDict, 50))
+                        print_player_move("two", "one", "heavy attack", charOneDict["health"])
 
-            if moveTwo == "1":
-                charOneDict["health"] = str(int(charOneDict["health"]) - damage_calculator())
-                print_player_move("two", "one", "heavy attack", charOneDict["health"])
-            elif moveTwo == "2":
-                charOneDict["health"] = str(int(charOneDict["health"]) - damage_calculator() // 2)
-                print_player_move("two", "one", "quick attack", charOneDict["health"])
+                    elif charOneDict["speed"] < charTwoDict["speed"]:
+                        charOneDict["health"] = str(int(charOneDict["health"]) - damage_calculator(charTwoDict, charOneDict, 50))
+                        print_player_move("two", "one", "heavy attack", charOneDict["health"])
+                        charTwoDict["health"] = str(int(charTwoDict["health"]) - damage_calculator(charOneDict, charTwoDict, 50))
+                        print_player_move("one", "two", "heavy attack", charTwoDict["health"])
+
+                    else:
+                        if random.choice[1,2] == 1:
+                            charOneDict["health"] = str(int(charOneDict["health"]) - damage_calculator(charTwoDict, charOneDict, 50))
+                            print_player_move("two", "one", "heavy attack", charOneDict["health"])
+                            charTwoDict["health"] = str(int(charTwoDict["health"]) - damage_calculator(charOneDict, charTwoDict, 50))
+                            print_player_move("one", "two", "heavy attack", charTwoDict["health"])
+                        else:
+                            charTwoDict["health"] = str(int(charTwoDict["health"]) - damage_calculator(charOneDict, charTwoDict, 50))
+                            print_player_move("one", "two", "heavy attack", charTwoDict["health"])
+                            charOneDict["health"] = str(int(charOneDict["health"]) - damage_calculator(charTwoDict, charOneDict, 50))
+                            print_player_move("two", "one", "heavy attack", charOneDict["health"])
+
+                elif moveTwo == "2":
+                    charOneDict["health"] = str(int(charOneDict["health"]) - damage_calculator(charTwoDict, charOneDict, 35))
+                    print_player_move("two", "one", "quick attack", charOneDict["health"])
+                    charTwoDict["health"] = str(int(charTwoDict["health"]) - damage_calculator(charOneDict, charTwoDict, 50))
+                    print_player_move("one", "two", "heavy attack", charTwoDict["health"])
+
+                elif moveTwo == "3":
+                    charTwoDict["health"] = str(int(charTwoDict["health"]) - damage_calculator(charOneDict, charTwoDict, 25))
+                    print("Player two protect, but player one's move broke through it and deals partial damage!")
+                    print_player_move("one", "two", "protected heavy attack", charTwoDict["health"])
+
+            elif moveOne == "2":
+                if moveTwo == "1":
+                    charTwoDict["health"] = str(int(charTwoDict["health"]) - damage_calculator(charOneDict, charTwoDict, 35))
+                    print_player_move("one", "two", "quick attack", charTwoDict["health"])
+                    charOneDict["health"] = str(int(charOneDict["health"]) - damage_calculator(charTwoDict, charOneDict, 50))
+                    print_player_move("two", "one", "heavy attack", charOneDict["health"])
+
+                elif moveTwo == "2":
+                    if charOneDict["speed"] > charTwoDict["speed"]:
+                        charTwoDict["health"] = str(int(charTwoDict["health"]) - damage_calculator(charOneDict, charTwoDict, 35))
+                        print_player_move("one", "two", "quick attack", charTwoDict["health"])
+                        charOneDict["health"] = str(int(charOneDict["health"]) - damage_calculator(charTwoDict, charOneDict, 35))
+                        print_player_move("two", "one", "quick attack", charOneDict["health"])
+
+                    elif charOneDict["speed"] < charTwoDict["speed"]:
+                        charOneDict["health"] = str(int(charOneDict["health"]) - damage_calculator(charTwoDict, charOneDict, 35))
+                        print_player_move("two", "one", "quick attack", charOneDict["health"])
+                        charTwoDict["health"] = str(int(charTwoDict["health"]) - damage_calculator(charOneDict, charTwoDict, 35))
+                        print_player_move("one", "two", "quick attack", charTwoDict["health"])
+
+                    else:
+                        if random.choice[1,2] == 1:
+                            charOneDict["health"] = str(int(charOneDict["health"]) - damage_calculator(charTwoDict, charOneDict, 35))
+                            print_player_move("two", "one", "quick attack", charOneDict["health"])
+                            charTwoDict["health"] = str(int(charTwoDict["health"]) - damage_calculator(charOneDict, charTwoDict, 35))
+                            print_player_move("one", "two", "quick attack", charTwoDict["health"])
+                        else:
+                            charTwoDict["health"] = str(int(charTwoDict["health"]) - damage_calculator(charOneDict, charTwoDict, 35))
+                            print_player_move("one", "two", "quick attack", charTwoDict["health"])
+                            charOneDict["health"] = str(int(charOneDict["health"]) - damage_calculator(charTwoDict, charOneDict, 35))
+                            print_player_move("two", "one", "quick attack", charOneDict["health"])
+
+                elif moveTwo == "3":
+                    charOneDict["health"] = str(int(charOneDict["health"]) - damage_calculator(charOneDict, charOneDict, 40))
+                    print("Player one uses a quick attack, but player two protects and player one hurts themself!")
+                    print(f"Player one is now at {charOneDict["health"]} HP")
+
+            elif moveOne == "3":
+                if moveTwo == "1":
+                    charOneDict["health"] = str(int(charOneDict["health"]) - damage_calculator(charTwoDict, charOneDict, 25))
+                    print("Player one protect, but player two's move broke through it and deals partial damage!")
+                    print_player_move("two", "one", "protected heavy attack", charOneDict["health"])
+                elif moveTwo == "2":
+                    charTwoDict["health"] = str(int(charTwoDict["health"]) - damage_calculator(charTwoDict, charTwoDict, 40))
+                    print("Player two uses a quick attack, but player one protects and player one hurts themself!")
+                    print(f"Player two is now at {charTwoDict["health"]} HP")
+                elif moveTwo == "3":
+                    print("Both protected, nothing happened")
+
 
         print("Battle over!")
         if int(charOneDict["health"]) <= 0:
