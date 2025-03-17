@@ -75,7 +75,7 @@ def battle_main():
     def damage_calculator(attacker, defender, base_damage):
         attack = int(attacker.get("strength", 0))
         defense = int(defender.get("defense", 1))
-        return max(1, base_damage + (attack - defense) // 2)
+        return max(1, base_damage + ((attack - defense) // 2)+((level*0.25)*base_damage))
 
     charOneDict, charTwoDict = chose_characters(
         input("What is the name of player 1's character? ").strip().upper(),
