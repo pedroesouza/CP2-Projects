@@ -1,6 +1,5 @@
-name, health, strength, defense, speed, level
-PEDRO,100,50,50,100, 1
-PIKACHU,60,45,50,120, 1
-BOB BOB,80,120,120,30,3
-GRENINJA,1,1,1,1,1
-JOSHEPH,10000,1000,1000,1,10
+name,health,strength,defense,speed,level
+PEDRO,100,50,50,100,7
+PIKACHU,60,45,50,120,1
+BOB BOB,80,120,120,30,11
+GRENINJA,1,1,1,300,1
