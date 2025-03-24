@@ -3,25 +3,36 @@
 #Imports necessary files
 import csv
 import random
+import pandas as pd
+import matplotlib.pyplot as plb
 
 #Big function for managing all the inner functions on the battle, it starts it off by calling the character choice function
 def battle_main():
+
     #For chosing characters, it asks, looks for, saves, formats, and returns the character's dictionaries to be use
     def chose_characters(charOne, charTwo):
-        with open('battle_simulator/character_stats.csv', 'r') as file:
-            reader = csv.DictReader(file)
-            funcCharOneDict = {}
-            funcCharTwoDict = {}
-            for i in reader:
-                char_name = i['name'].strip().upper()
-            
-                if char_name == charOne:
-                    funcCharOneDict = {k.strip().lower(): v.strip() for k, v in i.items()}
-                elif char_name == charTwo:
-                    funcCharTwoDict = {k.strip().lower(): v.strip() for k, v in i.items()}
-        
-        return funcCharOneDict, funcCharTwoDict
+        reader = pd.read_csv('battle_simulator/character_stats.csv')
 
+        # Standardize column names (lowercase, strip spaces)
+        reader.columns = reader.columns.str.strip().str.lower()
+        
+        # Standardize character names in DataFrame
+        reader['name'] = reader['name'].str.strip().str.upper()
+        
+        # Get character dictionaries
+        funcCharOneDict = reader[reader['name'] == charOne].to_dict('records')
+        funcCharTwoDict = reader[reader['name'] == charTwo].to_dict('records')
+
+        # Return first match if found, otherwise empty dict
+        if funcCharOneDict and funcCharTwoDict:
+            return funcCharOneDict[0], funcCharTwoDict[0]
+        elif (not funcCharOneDict) and funcCharTwoDict:
+            return {}, funcCharTwoDict[0]
+        elif funcCharOneDict and (not funcCharTwoDict):
+            return funcCharOneDict[0], {}
+        else:
+            return {}, {}
+    
     #Calls the chose function
     charOneDict, charTwoDict = chose_characters(input("What is the name of player 1's character? ").strip().upper(), input("What is the name of player 2's character? ").strip().upper())
 

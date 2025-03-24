@@ -1,5 +1,6 @@
-name,health,strength,defense,speed,level
-PEDRO,100,50,50,100,7
-PIKACHU,60,45,50,120,1
-BOB BOB,80,120,120,30,11
-GRENINJA,1,1,1,300,1
+name,backstory,health,strength,defense,speed,level
+PEDRO,he's funny,100,50,50,100,7
+PIKACHU,pikaaa,60,45,50,120,1
+BOB BOB,he has a bad name,80,120,120,30,11
+GRENINJA,ninja gooo,1,1,1,300,1
+JENNIFER SANCHEZ,backstory,199,80,50,240,2

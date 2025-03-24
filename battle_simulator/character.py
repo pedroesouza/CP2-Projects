@@ -2,6 +2,11 @@
 
 #Imports needed csv library
 import csv
+import pandas as pd
+from faker import Faker
+import matplotlib.pyplot as plt
+
+fake = Faker('en_US')
 
 #Big function to manage most of the character actions
 def character_manager():
@@ -55,7 +60,7 @@ def character_manager():
         
         #Calls inner helper function or error massage based on choice
         if whatToDo == "1":
-            create_character(input("Character name: ").upper(), input("Health stat: "), input("Strength stat: "), input("Defense stat: "), input("Speed stat: "), input("Current level: "))
+            create_character(fake.name().upper(), input("Health stat: "), input("Strength stat: "), input("Defense stat: "), input("Speed stat: "), input("Current level: "))
         elif whatToDo == "2":
             print_character(input("Enter character name to view (leave blank to print all): ").upper())
         else:
