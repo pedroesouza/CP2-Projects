@@ -1,5 +1,5 @@
-name,health,strength,defense,speed,level
-PEDRO,100,50,50,100,7
-PIKACHU,60,45,50,120,1
-BOB BOB,80,120,120,30,11
-GRENINJA,1,1,1,300,1
+name,health,strength,defense,speed,level,description
+JOHN DOE,100,50,30,20,1,JOHN DOE was born in New York and is a(n) Software Engineer
+JANE SMITH,150,40,40,30,3,JANE SMITH was born in Los Angeles and is a(n) Doctor
+SPENCER JONES,100,100,75,75,2,SPENCER JONES was born in Lake Jeremyborough and is a(n) Records manager
+LINDSAY VARGAS,80,80,80,80,5,"LINDSAY VARGAS is from South Deannaburgh and is a(n) Chemist, analytical"
