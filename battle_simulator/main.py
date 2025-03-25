@@ -15,9 +15,11 @@ def main():
         elif whatToDo == "2":
             battle_main()
         elif whatToDo == "3":
+            print("Goodbye!")
             exit()
         else:
             print("Invalid input.")
 
 #Calls main so the loop can start
 main()
+
