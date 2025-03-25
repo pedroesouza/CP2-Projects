@@ -17,10 +17,10 @@ Very simple execution, press play, and you will be prompted with various questio
 + Matplotlib
 `pip install matplotlib`  
 
-+ pandas  
++ pandas
 `pip install pandas`  
 
-+ Faker 
++ Faker
 `pip install faker`  
 
 ## Current Features  
