@@ -1,0 +1,10 @@
+type,name,length,width,radius,base,height,side1,side2
+circle,boxy,,,5.0,,,,
+square,square1,4.0,,,,,,
+rectangle,rect1,5.0,3.0,,,,,
+triangle,tri1,,,,,4.0,,
+circle,roundy,,,7.0,,,,
+square,square2,5.0,,,,,,
+triangle,tri2,,,,,5.0,,
+rectangle,rect2,10.0,2.0,,,,,
+rectangle,bob zoom,3.0,14.0,,,,,
