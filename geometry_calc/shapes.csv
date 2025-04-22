@@ -1,10 +1,12 @@
-type,name,length,width,radius,base,height,side1,side2
-circle,boxy,,,5.0,,,,
+type,name,length,width,radius,side1,side2,side3,height
 square,square1,4.0,,,,,,
 rectangle,rect1,5.0,3.0,,,,,
-triangle,tri1,,,,,4.0,,
-circle,roundy,,,7.0,,,,
+triangle,tri1,,,,3.0,4.0,5.0,4.0
+circle,roundy,,,,,,,
 square,square2,5.0,,,,,,
-triangle,tri2,,,,,5.0,,
+triangle,tri2,,,,3.0,4.0,5.0,5.0
 rectangle,rect2,10.0,2.0,,,,,
 rectangle,bob zoom,3.0,14.0,,,,,
+circle,idk,,,12.0,,,,
+triangle,123,,,,3.0,4.0,5.0,10.0
+triangle,name of guy,,,,100.0,1000.0,10000.0,2.0
