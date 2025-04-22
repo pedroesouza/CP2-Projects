@@ -3,15 +3,15 @@
 #Import needed library
 import pandas as pd
 
-#Import needed classes from other
+#Import needed classes from other files
 from shape import Circle, Square, Rectangle, Triangle
 
 #Path to the shape's csv
 csvPath = "geometry_calc/shapes.csv"
 
-#This funciton goes though the CSV and converts everything into objects
+#This function reads all the shapes from the CSV
 def load_shapes(shapes):
-    csvShapes = pd.read_csv(csvPath) #using pandas to read the csv
+    csvShapes = pd.read_csv(csvPath)
     for i, row in csvShapes.iterrows():
         shape_type = str(row['type']).strip().lower()
         name = str(row['name']).strip().lower()
@@ -22,17 +22,19 @@ def load_shapes(shapes):
         elif shape_type == 'rectangle':
             shapes.append(Rectangle(name, float(row['length']), float(row['width'])))
         elif shape_type == 'triangle':
-            shapes.append(Triangle(name, float(row['base']), float(row['height'])))
+            shapes.append(Triangle(name, float(row['side1']), float(row['side2']), float(row['side3']), float(row['height'])))
 
-#This puts all of the data in the CSV
+#This function saves all shapes to the CSV
 def save_shapes(shapes):
     data = []
-    for shape in shapes: #Loops though every shape to save them
-        base = None
-        height = None
+    for shape in shapes:
+        side1 = None
+        side2 = None
+        side3 = None
         length = None
         width = None
         radius = None
+        height = None
         shape_type = type(shape).__name__.lower()
         if shape_type == 'circle':
             radius = shape.radius
@@ -42,7 +44,9 @@ def save_shapes(shapes):
             length = shape.length
             width = shape.width
         elif shape_type == 'triangle':
-            base = shape.base
+            side1 = shape.side1
+            side2 = shape.side2
+            side3 = shape.side3
             height = shape.height
 
         data.append({
@@ -51,7 +55,9 @@ def save_shapes(shapes):
             'length': length,
             'width': width,
             'radius': radius,
-            'base': base,
+            'side1': side1,
+            'side2': side2,
+            'side3': side3,
             'height': height
         })
     csvShapes = pd.DataFrame(data)
